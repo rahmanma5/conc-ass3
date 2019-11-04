@@ -2,20 +2,11 @@ import java.lang.Thread;
 import java.util.concurrent.Semaphore;
 
 public class Airplane implements Runnable {
-    static Semaphore sem = new Semaphore(1);
     @Override
     public void run() {
-        try {
-            sem.acquire();
-        }
-        catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.print("Airplane in use by " + Thread.currentThread().getId());
+        System.out.println("Airplane in use by " + Thread.currentThread().getName());
         for (int i=0;i<5;i++) {
-            System.out.println("WEE!");
-            
+            //System.out.println("WEE!");
             try {
                 Thread.sleep(200);
             }
@@ -23,7 +14,6 @@ public class Airplane implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.print("Done flying!");
-        sem.release();
+        System.out.println("Done flying!: " + Thread.currentThread().getName());
     }
 }

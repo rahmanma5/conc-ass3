@@ -3,25 +3,33 @@ import java.util.concurrent.Semaphore;
 
 
 public class Airport {
+    private static int numOfRunways = 4;
+    private static int numOfStudents = 32;
+    private static int numOfPlanes = 4;
     public static void main(String[] args) {
-        Runnable runner = new Airplane();
-        Thread t1 = new Thread(runner);
-        Thread t2 = new Thread(runner);
+        Student.setNumberOfPlanes(numOfPlanes);
+        Thread studentList[] = new Thread[numOfStudents];
+        for (int i=0;i<numOfStudents;i++) {
+            Runnable runner = new Student();
+            studentList[i] = new Thread(runner);
+        }
 
-        t1.start();
-        t2.start();
-        try {
-            t1.join();
+        for (int i=0;i<numOfStudents;i++) {
+            studentList[i].start();
         }
-        catch(InterruptedException e) {
-            e.printStackTrace();
+
+        for (int i=0;i<numOfStudents;i++) {
+            try {
+                studentList[i].join();
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            t2.join();
-        }
-        catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        
+
+        
 
 
 
