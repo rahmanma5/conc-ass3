@@ -2,9 +2,15 @@ import java.lang.Thread;
 import java.util.concurrent.Semaphore;
 
 public class Airplane implements Runnable {
+    private static Semaphore availableRunways = null;
+
     @Override
     public void run() {
-        System.out.println("Airplane in use by " + Thread.currentThread().getName());
+        minimumFlightPractice();
+    }
+
+    public void minimumFlightPractice() {
+        System.out.println("Plane [" + Thread.currentThread().getName() + "] is soaring through the sky");
         for (int i=0;i<5;i++) {
             //System.out.println("WEE!");
             try {
