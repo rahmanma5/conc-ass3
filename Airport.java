@@ -2,11 +2,12 @@ import java.lang.Thread;
 import java.util.concurrent.Semaphore;
 
 
+
 public class Airport {
-    private static int numOfRunways = 4;
-    private static int numOfStudents = 5;
-    private static int numOfPlanes = 2;
-    private static int numOfInstructors = 2;
+    private static int numOfRunways = 1;
+    private static int numOfStudents = 2;
+    private static int numOfPlanes = 1;
+    private static int numOfInstructors = 1;
     public static void main(String[] args) {
         Student.setValues(numOfPlanes,numOfRunways,numOfInstructors);
         Thread studentList[] = new Thread[numOfStudents];
@@ -27,12 +28,6 @@ public class Airport {
                 e.printStackTrace();
             }
         }
-
-        
-
-        
-
-
 
     }
 
